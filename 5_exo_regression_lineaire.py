@@ -18,8 +18,16 @@ print(f"La moyenne est : {average(t)}")
 
 
 def square(arr):
-    for i in range(len(arr)):
-        arr[i] *= arr[i]
-    return arr[i]
+    result = 0
+    for elt in arr:
+        result = (elt * elt) + result
+    return result
 
 
+
+def variance(arr):
+    print(square(arr))
+    print(average(arr))
+    return square(arr)/len(arr)-(average(arr)*average(arr))
+
+print(variance(t))
