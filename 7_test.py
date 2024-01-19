@@ -38,7 +38,7 @@ print(type(day), type(month), type(year), type(elapsed_day))
 # Concatenate the created variable and print out a sentence like : "1 January 2000. Elapsed days : 0.003 percent"
 
 # %%
-print(f"{day} {month} {year}. Elapsed_days : {round(elapsed_day, 3)} percent")
+print(f"{day} {month} {year}. Elapsed_days : {elapsed_day:.3f} percent")
 
 
 
