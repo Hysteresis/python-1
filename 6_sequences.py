@@ -143,3 +143,25 @@ phrases = ["Python est un langage puissant", "Les list comprehensions sont utile
 # Utilisez une compréhension de liste pour créer une nouvelle liste
 # contenant la première lettre de chaque mot dans chaque phrase, à condition que le mot ait une longueur supérieure à 2.
 new_phrases = [word[0] for phrase in phrases for word in phrase.split() if len(word) > 2]
+
+phrases = ["Hello World", "Python is AWESOME", "Programming is fun", "Hello again"]
+new_phrases = [word for phrase in phrases for word in phrase.split()]
+print(new_phrases)
+
+noms = ["Alice", "Bob", "Charlie", "David"]
+# Utilisez une compréhension de dictionnaire pour créer un dictionnaire avec les longueurs des noms.
+dict_noms = {name: len(name) for name in noms}
+
+
+nombres = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+# Utilisez une compréhension de dictionnaire pour créer un dictionnaire avec des booléens indiquant si chaque nombre est pair.
+dict_nombres = {nombre: nombre % 2 == 0 for nombre in nombres}
+
+
+
+# Utilisez une compréhension de dictionnaire pour créer un dictionnaire avec le nombre de voyelles dans chaque mot.
+mots = ["python", "programmation", "est", "amusante"]
+dict_mots = {mot: sum(1 for lettre in mot.lower() if lettre in 'aeiouy') for mot in mots}
+print(dict_mots)
+
+print(type(dict_mots, noms))
