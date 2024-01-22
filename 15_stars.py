@@ -21,6 +21,7 @@ my_art.penup()
 my_art.forward(200)
 my_art.pendown()
 
+# Draw 2
 my_art.color("green")
 branch_length = 50
 for i in range(5):
