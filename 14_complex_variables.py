@@ -55,15 +55,14 @@ set_mid_days = {'Monday', 'Tuesday', 'Wednesday'}
 # Expected result : {'Friday', 'Saturday', 'Sunday', 'Thursday'}
 print(set_all_days - set_mid_days)
 
-
-# TODO Explain the difference between a list and a tuple.
+# Explain the difference between a list and a tuple.
 # List: Mutable ordered collection; allows modifications.
 # Tuple: Immutable ordered collection; fixed after creation.
 
-# TODO Explain the difference between a list and a dictionary.
+# Explain the difference between a list and a dictionary.
 # List: Ordered collection by index; suitable for sequences.
 # Dictionary: Unordered key-value pairs; efficient for lookups.
 
-# TODO Explain the difference between a list and a set.
+# Explain the difference between a list and a set.
 # List: Ordered collection with duplicates; suitable for sequences.
 # Set: Unordered collection without duplicates; ensures uniqueness.
