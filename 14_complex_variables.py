@@ -1,15 +1,18 @@
 # Create a list of numbers from one to tree hundred and seventy two
 list_numbers = [number for number in range(1, 373)]
+
 print(list_numbers)
 
 # Create a list of string, containing the months January to December. Each month have to be duplicate 31 times.
 # Expected result : ['January', 'January', 'January', 'January'.. 'December', 'December', 'December', 'December']
 months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
 new_list_months = [month for month in months for i in range(0, 31)]
+
 print(new_list_months)
 
 # Compute the length of the list.
 # The expected result is 372
+
 print(len(new_list_months))
 
 # Create a list of integer, containing 372 times the number 2020
@@ -17,12 +20,14 @@ print(len(new_list_months))
 # for i in range(0, 372):
 #     list_numbers[i] = 2020
 list_years = [2020 for i in range(1, 373)]
+
 print(list_years)
 print(len(list_years))
 
 # Create a list of tuple. Each tuple have to contains the day of the year and the number tree hundred and seventy two.
 # The expected result is : [(1, 372), (2, 372)... (372, 372)]
 tuple_lists = [(i, 372) for i in range(1, 373)]
+
 print(tuple_lists)
 
 # Use a comprehension list, to divide each first element of the tuple by the second one.
@@ -31,6 +36,7 @@ print(tuple_lists)
 # divided_lists = []
 
 elapsed_time = [round(t[0]/t[1], 3) for t in tuple_lists]
+
 print(elapsed_time)
 
 # Create a dictionary, containing the following keys ['day', 'month', 'year', 'elapsed_time'].
@@ -53,6 +59,7 @@ set_mid_days = {'Monday', 'Tuesday', 'Wednesday'}
 
 # Substract the first list by the second one.
 # Expected result : {'Friday', 'Saturday', 'Sunday', 'Thursday'}
+
 print(set_all_days - set_mid_days)
 
 # Explain the difference between a list and a tuple.
