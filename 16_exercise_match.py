@@ -2,8 +2,8 @@
 
 letter_entry = ''
 
-def vowel_verifcator():
-    letter_entry = input("Saisir une lettre : ")
+
+def vowel_verifcator(letter_entry):
     match str(letter_entry):
         case 'a':
             print(f'Cette lettre {letter_entry} est une voyelle')
@@ -21,4 +21,4 @@ def vowel_verifcator():
             print(f"Cette lettre {letter_entry} n'est pas une voyelle")
 
 
-vowel_verifcator()
+vowel_verifcator(letter_entry = input("Saisir une lettre : "))
