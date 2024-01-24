@@ -2,6 +2,7 @@ import pandas as pd
 
 path = "17_historique_calculs.csv"
 
+
 def entry_values():
     """
     Saisir deux membres.
@@ -14,14 +15,15 @@ def entry_values():
         values = [a, b]
         return values
     except ValueError:
-        print("Erreur : Veuillez saisir des nombres entiers.")
+        print("Veuillez saisir des nombres")
         return None
+
 
 def addition(arr):
     """
     Effectuer l'addition de deux nombres
 
-    :param arr: Une liste contenant deux membres à additionner.
+    :param arr: Liste de deux membres à additionner.
     :return: Aucune valeur
     """
     if arr is not None:
@@ -77,4 +79,3 @@ while response:
     else:
         print("Vous ne souhaitez pas continuer")
         response = False
-

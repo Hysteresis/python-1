@@ -26,7 +26,6 @@ else:
     print("The 1 March does not exist")
 
 # In the concatenated list, print every tuple which are equal or below 28 and contains the string 'February'.
-
 february_28 = [elt for elt in january_february_lists if elt[0] <= 28 and elt[1] == 'February']
 print(february_28)
 
