@@ -22,8 +22,3 @@ for month in months:
         result.append((day, month))
 
 print(result)
-
-
-
-
-print()
