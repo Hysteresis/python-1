@@ -15,10 +15,5 @@ print(numbers)
 
 months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
 
-result = []
-i = 0
-for month in months:
-    for day in range(1, 32):
-        result.append((day, month))
-
+result = [(day, month) for month in months for day in range(1, 32)]
 print(result)
