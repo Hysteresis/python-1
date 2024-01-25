@@ -14,6 +14,9 @@ import sqlite3
 #
 # Votre travail sera validé par 10 tests unitaires implémentés par pytest. Le rapport de résultat devra être livré sur github.
 #
+url = "https://www.laboitedufromager.com/liste-des-fromages-par-ordre-alphabetique/"
+
+
 
 class Extract:
     def __init__(self, url):
@@ -26,12 +29,13 @@ class Extract:
         tds_list = soup.find_all('td')
 
         for i in range(0, len(tds_list), 3):
-            if tds_list[i] != "":
-                cheese = tds_list[i].text
-                family = tds_list[i+1].text
-                paste = tds_list[i+2].text
-                cheese_list.append({'Fromage': cheese, 'Famille': family, 'Pâte': paste})
+            cheese = tds_list[i].text.strip()  # Utilisez .strip() pour supprimer les espaces inutiles
+            if cheese:
+                family = tds_list[i + 1].text.strip()
+                paste = tds_list[i + 2].text.strip()
+                cheese_list.append({'Fromage': cheese, 'Famille': family, 'Pate': paste})
 
+        print(cheese_list[1]['Fromage'])
 
         # Create a DataFrame outside the loop
         data = pd.DataFrame(cheese_list)
@@ -45,18 +49,18 @@ class Extract:
         con.close()
         # # Loading
 
-        con = sqlite3.connect("DATA/rugby_team.sqlite")
+        con = sqlite3.connect("DATA/boitedufromager.sqlite")
 
         # Write the new DataFrame to a new SQLite table
         data.to_sql("ODS", con, if_exists="replace")
 
         con.close()
 
-        con = sqlite3.connect("DATA/rugby_team.sqlite")
+        con = sqlite3.connect("DATA/boitedufromager.sqlite")
         data.to_sql("ODS", con, if_exists="replace")
         con.close()
 
-        con = sqlite3.connect("DATA/rugby_team.sqlite")
+        con = sqlite3.connect("DATA/boitedufromager.sqlite")
 
         # Load the data into a DataFrame
         data = pd.read_sql_query("SELECT * from ODS", con)
@@ -68,53 +72,5 @@ class Extract:
         return tds_list
 
 
-url = "https://www.laboitedufromager.com/liste-des-fromages-par-ordre-alphabetique/"
 extract = Extract(url)
 print(extract.read_website(url))
-
-# # Extraire de l'information
-# data = urlopen('https://fr.wikipedia.org/wiki/Surnom_des_%C3%A9quipes_nationales_de_rugby_%C3%A0_XV')
-# data = data.read()
-# soup = BeautifulSoup(data)
-# team_table = soup.find('table', {'class': 'wikitable'})
-#
-# tds = soup.find_all('span', {'class': 'nowrap'})
-#
-# flag_urls = []
-# flag_titles = []
-# countries = []
-#
-# for td in tds:
-#     flag_url = td.find('a', {'class': 'mw-file-description'})['href']
-#     # flag_title = td.find('a', {'class':'mw-file-description'})['title']
-#     country = (td.text)
-#
-#     flag_urls.append(flag_url)
-#     # flag_titles.append(flag_title)
-#     countries.append(country)
-#
-# data = {'flag_urls': flag_urls, 'countries': countries}
-# data = pd.DataFrame(data)
-# data['creation_date'] = datetime.now()
-#
-# TODO # Transformation d'information
-# # Loading
-#
-# con = sqlite3.connect("DATA/rugby_team.sqlite")
-#
-# # Write the new DataFrame to a new SQLite table
-# data.to_sql("ODS", con, if_exists="replace")
-#
-# con.close()
-#
-# con = sqlite3.connect("DATA/rugby_team.sqlite")
-#
-# # Load the data into a DataFrame
-# data = pd.read_sql_query("SELECT * from ODS", con)
-# print(data)
-# # Select only data for 2002
-# #surveys2002 = surveys_df[surveys_df.year == 2002]
-#
-# con.close()
-# # data
-#
