@@ -39,9 +39,13 @@ def test_2_one_is_in_my_set():
 @pytest.mark.parametrize("lists", ["one", "two", "three"])
 def test_3_list_ordered(lists):
     assert (variable.my_list == lists)
-# Ajoutez un nouvel élément, par exemple "four", à la liste my_list, puis vérifiez si cet élément est présent dans la liste.
 
 
+# Ajoutez un nouvel élément, par exemple "four", à la liste my_list, puis vérifiez si cet élément est présent
+# dans la liste.
+@pytest.mark.parametrize("lists", ["one", "two", "three", "four"])
+def test_4_list_argument_false(lists):
+    assert (variable.my_list != lists)
 # Supprimez l'élément "two" de l'ensemble my_set et vérifiez qu'il n'est plus présent.
 # Vérifiez si l'élément "four" est présent dans la liste my_list.
 # Utilisez une fixture pour partager l('ensemble my_set entre plusieurs tests. Réalisez deux tests : '
