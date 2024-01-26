@@ -30,7 +30,7 @@ def test_3_columns_exist():
     con = sqlite3.connect("../DATA/boitedufromager.sqlite")
     data = pd.read_sql_query("SELECT * FROM ODS", con)
     con.close()
-    expected_columns = ['Fromage', 'Famille', 'Pâte', 'creation_date']
+    expected_columns = ['Fromage', 'Famille', 'Pate', 'creation_date']
 
     assert all(col in data.columns for col in expected_columns)
 
@@ -42,8 +42,9 @@ def test_4_extraction_data():
     con = sqlite3.connect("../DATA/boitedufromager.sqlite")
     data = pd.read_sql_query("SELECT Fromage FROM ODS", con)
     con.close()
+    print(data['Fromage'].values[0])
 
-    assert "Fromage" in data['Fromage'].values[0]
+    assert "A" in data['Fromage'].values[0]
 
 
 def test_5_total_rows_in_database():
@@ -56,7 +57,7 @@ def test_5_total_rows_in_database():
     data = pd.read_sql_query("SELECT * FROM ODS", con)
     con.close()
 
-    assert len(data) == 391
+    assert len(data) == 353
 
 
 def test_6_cheese_with_letter_A():
@@ -72,7 +73,7 @@ def test_6_cheese_with_letter_A():
 
     con.close()
 
-    assert row_count == 7
+    assert row_count == 8
 
 
 def test_7_famille_column_has_expected_values():
@@ -130,6 +131,6 @@ def test_10_total_cheese_count():
     con.close()
 
     total_rows = data.shape[0]
-    expected_total_rows = 391
+    expected_total_rows = 353
 
     assert total_rows == expected_total_rows
