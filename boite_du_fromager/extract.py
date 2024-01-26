@@ -50,7 +50,7 @@ class Extract:
 
     def store_data_in_database(self, data):
         """
-
+        store data in DB SQLite
         :param data:dataframe with cheese information
         :return:None
         """
