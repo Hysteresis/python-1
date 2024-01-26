@@ -13,14 +13,13 @@ def generate_calendar(year):
     list_years = [year for i in range(1, 373)]
     tuple_lists = [(i, 372) for i in range(1, 373)]
     elapsed_time = [round(t[0] / t[1], 3) for t in tuple_lists]
-    new_calenendar = {
+    new_calendar = {
         "day": list_numbers,
         'month': new_list_months,
         'year': list_years,
         'elapsed_time': elapsed_time
-
     }
-    return new_calenendar
+    return new_calendar
 
 
 print(generate_calendar(2021))
