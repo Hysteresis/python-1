@@ -102,23 +102,22 @@ def test_8_format_date_creation():
     # Vérifier le format 'AAAA-MM-JJ HH:MM:SS.SSSSSS'
     assert all(pd.to_datetime(data['creation_date'],  format='%Y-%m-%d %H:%M:%S.%f').notnull())
 
-
-def test_9_dates_count():
+@pytest.mark.parametrize("fromage, famille, pate", [('Abbaye de la Pierre-qui-Vire', 'Vache', 'Molle à croûte lavée'),
+            ('Banon', 'Chèvre', 'Molle à croûte naturelle')])
+def test_9_insertion(fromage, famille, pate):
     """
     test number of total rows for column 'date_creation'
     :return:
     """
     con = sqlite3.connect("../DATA/boitedufromager.sqlite")
-    data = pd.read_sql_query("SELECT creation_date FROM ODS", con)
+    data = pd.read_sql_query("SELECT * FROM ODS", con)
+    expected_row = (fromage, famille, pate)
     con.close()
+    print(f"\n\n\n\nexpected_row : {expected_row}")
+    existing_row = data[(data['Fromage'] == fromage) & (data['Famille'] == famille) & (data['Pate'] == pate)]
+    print(f"\n\n\nexisting_row {existing_row} ")
 
-    num_dates = len(data['creation_date'])
-
-    con = sqlite3.connect("../DATA/boitedufromager.sqlite")
-    total_rows = pd.read_sql_query("SELECT COUNT(*) FROM ODS", con).iloc[0, 0]
-    con.close()
-
-    assert num_dates == total_rows
+    assert not existing_row.empty
 
 
 def test_10_total_cheese_count():
@@ -134,3 +133,21 @@ def test_10_total_cheese_count():
     expected_total_rows = 353
 
     assert total_rows == expected_total_rows
+
+# faire un groupby() .count compter le nombre de fromage par famille creer une colone qui recupere la
+# 1ere lettre fonction substring
+
+def test_11_count_family():
+    """
+    test number of total rows for column 'Fromage'
+    :return:
+    """
+    con = sqlite3.connect("../DATA/boitedufromager.sqlite")
+    data = pd.read_sql_query("SELECT *,SUBSTR(Famille, 1, 1) AS animal FROM ODS", con)
+    columns = ['animal', 'Famille']
+    count_by_family = data[columns].groupby('Famille').count()
+    con.close()
+    print(count_by_family)
+
+
+
