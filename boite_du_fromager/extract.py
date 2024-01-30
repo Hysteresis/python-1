@@ -31,11 +31,11 @@ class Extract:
 
         for i in range(3, len(tds_list), 3):
             cheese = tds_list[i].text.strip()
-            if cheese:
+            if cheese and not tds_list[i].find('h2'):  # Check if h2 tag is not present
                 family = tds_list[i + 1].text.strip()
                 paste = tds_list[i + 2].text.strip()
                 cheese_list.append({'Fromage': cheese, 'Famille': family, 'Pate': paste})
-
+        print(cheese_list)
         return cheese_list
 
     def create_dataframe(self, cheese_list):
@@ -60,3 +60,17 @@ class Extract:
         con = sqlite3.connect(db_path)
         data.to_sql("ODS", con, if_exists="replace", index=False)
         con.close()
+
+    def count_family(self):
+        """
+        Count the occurrences of each family in the database
+        :return: None
+        """
+        db_path = os.path.join(os.getcwd(), 'DATA', 'boitedufromager.sqlite')
+        con = sqlite3.connect(db_path)
+
+        data = pd.read_sql_query("SELECT * FROM ODS", con)
+        # print(data['Famille'])
+        count_by_family = data['Fromage'].groupby(data['Famille']).count()
+        con.close()
+        # print(count_by_family)

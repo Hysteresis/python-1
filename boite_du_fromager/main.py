@@ -5,3 +5,4 @@ url = "https://www.laboitedufromager.com/liste-des-fromages-par-ordre-alphabetiq
 
 extractor = Extract(url)
 extractor.read_website()
+extractor.count_family()
